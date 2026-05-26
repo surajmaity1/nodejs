@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
+    "start": "node dist/server.js",
     "dev": "tsup --watch --onSuccess \"node dist/server.js\"",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate"
