@@ -2,9 +2,14 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
+    "prebuild": "prisma generate",
     "build": "tsup",
-    "dev": "tsup --watch --onSuccess \"node dist/server.js\""
+    "dev": "tsup --watch --onSuccess \"node dist/server.js\"",
+    "start": "node dist/server.js",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +20,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.21.0",
+    "winston": "^3.19.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
