@@ -5,5 +5,8 @@ export default defineConfig({
   clearMocks: true,
   preset: "ts-jest",
   testEnvironment: "node",
-  setupFilesAfterEnv: ["./src/tests/prisma/singleton.ts"],
+  setupFilesAfterEnv: ["./src/tests/config/singleton.ts"],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  }
 });

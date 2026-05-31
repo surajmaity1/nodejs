@@ -32,13 +32,7 @@ export const createUserController = async (req: Request, res: Response) => {
 
     res.status(201).json({
       message: "User created successfully",
-      data: {
-        username: user.username,
-        email: user.email,
-        contactNumber: user.contactNumber,
-        name: user.name,
-        image: user.image,
-      },
+      data: user,
     });
   } catch (error) {
     logger.error("Error while creating user", error);

@@ -10,9 +10,9 @@
     "start": "node dist/server.js",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "coverage": "vitest run --coverage"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -37,7 +37,6 @@
     "ts-jest": "^29.4.11",
     "tsup": "^8.5.1",
     "tsx": "^4.22.3",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.7"
+    "typescript": "^6.0.3"
   }
 }

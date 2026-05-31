@@ -4,6 +4,12 @@ import { prisma } from "@/utils/prisma";
 export const createUser = async (user: User) => {
   return await prisma.user.create({
     data: user,
+    omit: {
+      signInProvider: true,
+      createdAt: true,
+      updatedAt: true,
+      isDeleted: true,
+    }
   });
 };
 
