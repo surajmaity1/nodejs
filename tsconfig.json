@@ -3,6 +3,9 @@
     "newLine": "lf",
     "allowJs": false,
     "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
       "@/*": ["./src/*"]
     },

@@ -6,7 +6,7 @@ import logger from "./utils/logger";
 const app = express();
 const port = parseInt(config.PORT);
 
-app.use("/v1", router);
+app.use(express.json()).use("/v1", router);
 
 app.listen(port, () => {
   logger.info(`Server running on port:${port}`);
