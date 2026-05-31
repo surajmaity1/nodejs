@@ -12,6 +12,7 @@ export const healthController = async (req: Request, res: Response) => {
       application: HealthStatus.UP,
       db: HealthStatus.UP,
       timestamp: new Date().toISOString(),
+      uptime: process.uptime().toLocaleString(),
     };
 
     if (!healthResponse) {
@@ -26,6 +27,7 @@ export const healthController = async (req: Request, res: Response) => {
       application: HealthStatus.DOWN,
       db: HealthStatus.DOWN,
       timestamp: new Date().toISOString(),
+      uptime: process.uptime().toLocaleString(),
     };
 
     return res.status(503).json(response);
