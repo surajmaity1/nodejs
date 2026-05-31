@@ -1,4 +1,4 @@
-import { SOMETHING_WENT_WRONG } from "@/constants/global";
+import { INTERNAL_SERVER_ERROR } from "@/constants/global";
 import {
   createUser,
   findUserByEmail,
@@ -37,7 +37,7 @@ export const createUserController = async (req: Request, res: Response) => {
   } catch (error) {
     logger.error("Error while creating user", error);
     res.status(500).json({
-      message: SOMETHING_WENT_WRONG,
+      message: INTERNAL_SERVER_ERROR,
     });
   }
 };

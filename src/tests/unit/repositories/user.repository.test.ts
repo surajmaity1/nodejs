@@ -1,6 +1,7 @@
 import { createUser } from "@/repositories/user.repository";
 import { prismaMock } from "@/tests/config/singleton";
-import { TEST_USERS } from "../fixtures/user";
+import { TEST_USERS } from "../../fixtures/user";
+import { describe, it, expect } from "@jest/globals";
 
 describe("User Repository", () => {
   describe("createUser", () => {

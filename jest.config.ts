@@ -7,6 +7,7 @@ export default defineConfig({
   testEnvironment: "node",
   setupFilesAfterEnv: ["./src/tests/config/singleton.ts"],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
-  }
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
+  setupFiles: ['<rootDir>/jest.setup.ts']
 });
