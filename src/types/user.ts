@@ -1,16 +1,15 @@
 import { Request, Response } from "express";
 
-export type User = {
+export type UserCreateRequestBody = {
   username: string;
   email: string;
   contactNumber?: number;
   name: string;
   image?: string;
-  signInProvider: string;
 };
 
 export type UserCreateRequest = Request & {
-  body: User;
+  body: UserCreateRequestBody;
 };
 
 export type UserCreateResponse = Response;

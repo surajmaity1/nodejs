@@ -4,12 +4,9 @@ import { Prisma } from "../../generated/prisma/client";
 export const createUser = async (user: Prisma.UserCreateInput) => {
   return await prisma.user.create({
     data: user,
-    omit: {
-      signInProvider: true,
-      signInProviderId: true,
-      createdAt: true,
-      updatedAt: true,
-      isDeleted: true,
+    select: {
+      id: true,
+      name: true,
     }
   });
 };
@@ -20,6 +17,9 @@ export const findUserByUserName = async (username: string) => {
       isDeleted: false,
       username,
     },
+    select: {
+      email: true,
+    }
   });
 };
 
@@ -29,12 +29,9 @@ export const findUserByEmail = async (email: string) => {
       isDeleted: false,
       email,
     },
-    omit: {
-      signInProvider: true,
-      signInProviderId: true,
-      createdAt: true,
-      updatedAt: true,
-      isDeleted: true,
+    select: {
+      id: true,
+      name: true,
     }
   });
 };

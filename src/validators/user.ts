@@ -10,7 +10,6 @@ const createUserSchema = z.strictObject({
   contactNumber: z.number().int().positive().optional(),
   name: z.string().min(3),
   image: z.url().optional(),
-  signInProvider: z.enum(["GOOGLE", "LINKEDIN", "TWITTER", "MANUAL"]),
 });
 
 export const createUserValidator = async (
