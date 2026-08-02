@@ -24,10 +24,7 @@ const environmentSchema = z.object({
 const environmentVariables = environmentSchema.safeParse(process.env);
 
 if (!environmentVariables.success) {
-  console.error(
-    "Config validation error: ",
-    environmentVariables.error.message,
-  );
+  console.error("Config validation error: ", environmentVariables.error.message);
   throw new Error("Environment variables not valid");
 }
 

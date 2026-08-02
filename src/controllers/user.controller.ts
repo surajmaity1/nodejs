@@ -1,28 +1,24 @@
 import { INTERNAL_SERVER_ERROR } from "@/constants/global";
-import {
-  createUser,
-  findUserByEmail,
-  findUserByUserName,
-} from "@/repositories/user.repository";
+import { createUser, findUserByEmail, findUserByUserName } from "@/repositories/user.repository";
+import { UserCreateRequest, UserCreateRequestBody, UserCreateResponse } from "@/types/user";
 import logger from "@/utils/logger";
-import { Request, Response } from "express";
 
-export const createUserController = async (req: Request, res: Response) => {
+export const createUserController = async (req: UserCreateRequest, res: UserCreateResponse) => {
   try {
-    const userData = req.body;
+    const userData = req.body as UserCreateRequestBody;
     const { username, email } = userData;
 
-    const UserNameAlreadyExist = await findUserByUserName(username);
+    const userNameExist = await findUserByUserName(username);
 
-    if (UserNameAlreadyExist) {
+    if (userNameExist) {
       return res.status(400).json({
         message: "Username already exist. Try with different username",
       });
     }
 
-    const alreadyExistUser = await findUserByEmail(email);
+    const existUser = await findUserByEmail(email);
 
-    if (alreadyExistUser) {
+    if (existUser) {
       return res.status(400).json({
         message: "User already exist. Try with different email",
       });

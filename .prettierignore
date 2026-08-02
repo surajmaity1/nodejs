@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+node_modules
+dist
+generated
+pnpm-workspace.yaml
+.github/workflows/test.yml
+jest.config.ts
