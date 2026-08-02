@@ -7,7 +7,7 @@ export const createUser = async (user: Prisma.UserCreateInput) => {
     select: {
       id: true,
       name: true,
-    }
+    },
   });
 };
 
@@ -19,7 +19,7 @@ export const findUserByUserName = async (username: string) => {
     },
     select: {
       email: true,
-    }
+    },
   });
 };
 
@@ -32,6 +32,6 @@ export const findUserByEmail = async (email: string) => {
     select: {
       id: true,
       name: true,
-    }
+    },
   });
 };

@@ -22,11 +22,7 @@ describe("User Validators", () => {
         body: TEST_USER_PAYLOADS[0],
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(1);
       expect(res.status).not.toHaveBeenCalled();
@@ -37,11 +33,7 @@ describe("User Validators", () => {
         body: {},
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(0);
       expect(res.status).toHaveBeenCalledWith(400);
@@ -55,11 +47,7 @@ describe("User Validators", () => {
         body: { ...TEST_USER_PAYLOADS[0], email: "xyz" },
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(0);
       expect(res.status).toHaveBeenCalledWith(400);
@@ -82,11 +70,7 @@ describe("User Validators", () => {
         body: { ...TEST_USER_PAYLOADS[0], username: "a" },
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(0);
       expect(res.status).toHaveBeenCalledWith(400);
@@ -109,11 +93,7 @@ describe("User Validators", () => {
         body: { ...TEST_USER_PAYLOADS[0], name: "a" },
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(0);
       expect(res.status).toHaveBeenCalledWith(400);
@@ -136,11 +116,7 @@ describe("User Validators", () => {
         body: { ...TEST_USER_PAYLOADS[0], signInProvider: "a" },
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(0);
       expect(res.status).toHaveBeenCalledWith(400);
@@ -151,8 +127,7 @@ describe("User Validators", () => {
           errors: [
             {
               field: "signInProvider",
-              message:
-                'Invalid option: expected one of "GOOGLE"|"LINKEDIN"|"TWITTER"|"MANUAL"',
+              message: 'Invalid option: expected one of "GOOGLE"|"LINKEDIN"|"TWITTER"|"MANUAL"',
             },
           ],
         }),
@@ -164,11 +139,7 @@ describe("User Validators", () => {
         body: { ...TEST_USER_PAYLOADS[0], mango: "mango" },
       };
 
-      await createUserValidator(
-        req as UserCreateRequest,
-        res as UserCreateResponse,
-        nextSpy,
-      );
+      await createUserValidator(req as UserCreateRequest, res as UserCreateResponse, nextSpy);
 
       expect(nextSpy).toHaveBeenCalledTimes(0);
       expect(res.status).toHaveBeenCalledWith(400);
