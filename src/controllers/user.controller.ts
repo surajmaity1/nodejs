@@ -1,7 +1,9 @@
 import { INTERNAL_SERVER_ERROR } from "@/constants/global";
 import { createUser, findUserByEmail, findUserByUserName } from "@/repositories/user.repository";
+import { getUserDetailsByUserId } from "@/services/user.services";
 import { UserCreateRequest, UserCreateRequestBody, UserCreateResponse } from "@/types/user";
 import logger from "@/utils/logger";
+import { Request, Response } from "express";
 
 export const createUserController = async (req: UserCreateRequest, res: UserCreateResponse) => {
   try {
@@ -37,3 +39,27 @@ export const createUserController = async (req: UserCreateRequest, res: UserCrea
     });
   }
 };
+
+export const getUserDetailsByUserIdController = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+    const userDetails = await getUserDetailsByUserId(userId as string, true);
+
+    if (!userDetails) {
+      return res.status(404).json({
+        message: "User not found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      message: "User fetched successfully",
+      data: userDetails,
+    });
+  } catch (error) {
+    logger.error("Error while fetching user details", error);
+    res.status(500).json({
+      message: INTERNAL_SERVER_ERROR,
+    });
+  }
+}

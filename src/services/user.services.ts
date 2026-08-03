@@ -1,4 +1,4 @@
-import { createUser, findUserByEmail } from "@/repositories/user.repository";
+import { createUser, findUserByEmail, findUserByUserId, findUserDetailsByUserId } from "@/repositories/user.repository";
 import { UserDetails } from "@/types/auth";
 
 export const createOrUpdateUserDetails = async (userData: UserDetails) => {
@@ -22,3 +22,14 @@ export const createOrUpdateUserDetails = async (userData: UserDetails) => {
     throw error;
   }
 };
+
+export const getUserDetailsByUserId = async (userId: string, includeDetails: boolean) => {
+  try {
+    if (includeDetails) {
+      return await findUserDetailsByUserId(userId);
+    }
+    return await findUserByUserId(userId);
+  } catch (error) {
+    throw error;
+  }
+}

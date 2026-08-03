@@ -12,8 +12,6 @@ app
   .use(cookieParser())
   .use("/v1", router)
   .use((req, res) => {
-    logger.error(`${req.originalUrl} route not found`);
-
     return res.status(404).json({
       message: "Route not found",
     });
