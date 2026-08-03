@@ -4,9 +4,9 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 type Token = "access" | "refresh";
 
 type CustomJwtPayload = jwt.JwtPayload & {
-  userId: string,
-  tokenType: string,
-}
+  userId: string;
+  tokenType: string;
+};
 
 const generateToken = (userId: string, tokenType: Token): string => {
   try {
@@ -47,13 +47,15 @@ const validateToken = (token: string, tokenType: Token) => {
   }
 };
 
-export const verifyToken = (token: string): CustomJwtPayload  => {
+export const verifyToken = (token: string): CustomJwtPayload => {
   try {
-    return jwt.verify(token, config.PUBLIC_KEY, { algorithms: [config.ALGORITHM as jwt.Algorithm] }) as CustomJwtPayload;
+    return jwt.verify(token, config.PUBLIC_KEY, {
+      algorithms: [config.ALGORITHM as jwt.Algorithm],
+    }) as CustomJwtPayload;
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const generateTokenPair = (userId: string) => {
   const accessToken = generateToken(userId, "access");

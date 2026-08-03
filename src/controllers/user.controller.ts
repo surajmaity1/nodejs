@@ -3,6 +3,7 @@ import { createUser, findUserByEmail, findUserByUserName } from "@/repositories/
 import { getUserDetailsByUserId } from "@/services/user.services";
 import { UserCreateRequest, UserCreateRequestBody, UserCreateResponse } from "@/types/user";
 import logger from "@/utils/logger";
+import { validateUUID } from "@/utils/user";
 import { Request, Response } from "express";
 
 export const createUserController = async (req: UserCreateRequest, res: UserCreateResponse) => {
@@ -43,6 +44,14 @@ export const createUserController = async (req: UserCreateRequest, res: UserCrea
 export const getUserDetailsByUserIdController = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
+    const validUserId = validateUUID(userId as string);
+
+    if (!validUserId) {
+      return res.status(400).json({
+        message: "Invalid user id",
+      });
+    }
+
     const userDetails = await getUserDetailsByUserId(userId as string, true);
 
     if (!userDetails) {
@@ -62,4 +71,4 @@ export const getUserDetailsByUserIdController = async (req: Request, res: Respon
       message: INTERNAL_SERVER_ERROR,
     });
   }
-}
+};

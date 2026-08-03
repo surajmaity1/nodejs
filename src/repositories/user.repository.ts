@@ -44,8 +44,8 @@ export const findUserByUserId = async (userId: string) => {
     },
     select: {
       id: true,
-    }
-  })
+    },
+  });
 };
 
 export const findUserDetailsByUserId = async (userId: string) => {
@@ -60,6 +60,6 @@ export const findUserDetailsByUserId = async (userId: string) => {
       signInProvider: true,
       signInProviderId: true,
       isDeleted: true,
-    }
-  })
-}
+    },
+  });
+};

@@ -5,21 +5,21 @@ import logger from "@/utils/logger";
 import { NextFunction, Request, Response } from "express";
 
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const token = req.cookies[config.ACCESS_TOKEN_NAME] as string;
-        const { userId } = verifyToken(token);
+  try {
+    const token = req.cookies[config.ACCESS_TOKEN_NAME] as string;
+    const { userId } = verifyToken(token);
 
-        const user = await getUserDetailsByUserId(userId, false);
-        
-        if (!user) {
-            return res.status(401).json({
-                message: "Unauthenticated user",
-            })
-        }
+    const user = await getUserDetailsByUserId(userId, false);
 
-        next();
-    } catch (error) {
-        logger.error("Error while validating ", error);
-        next(error);
+    if (!user) {
+      return res.status(401).json({
+        message: "Unauthenticated user",
+      });
     }
-}
+
+    next();
+  } catch (error) {
+    logger.error("Error while validating ", error);
+    next(error);
+  }
+};
