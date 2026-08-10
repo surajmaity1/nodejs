@@ -19,7 +19,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
 
     next();
   } catch (error) {
-    logger.error("Error while validating ", error);
+    logger.error("Error while authenticating user", error);
     next(error);
   }
 };
