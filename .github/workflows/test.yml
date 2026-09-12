@@ -1,9 +1,6 @@
 name: Tests
 
 on:
-  push:
-    branches:
-      - "**"
   pull_request:
     branches:
       - "**"
@@ -26,7 +23,7 @@ jobs:
       with:
         cache: true
         install: false
-    
+
     - name: Install pnpm
       run: pnpm install --frozen-lockfile
     
