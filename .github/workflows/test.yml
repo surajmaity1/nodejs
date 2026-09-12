@@ -1,16 +1,12 @@
 name: Tests
 
 on:
-  push:
-    branches:
-      - "**"
   pull_request:
     branches:
       - "**"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -18,21 +14,18 @@ jobs:
       DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/database"
       ENV: "TEST"
 
-    strategy:
-      matrix:
-        node-version: [24.x]
-
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v6.0.8
+    - name: Setup pnpm and Node.js
+      uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
       with:
-        version: latest
-    
-    - name: Install dependencies
-      run: pnpm install
+        cache: true
+        install: false
+
+    - name: Install pnpm
+      run: pnpm install --frozen-lockfile
     
     - name: Prisma Generate
       run: pnpm generate

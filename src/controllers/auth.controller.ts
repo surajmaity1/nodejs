@@ -48,10 +48,7 @@ export const googleCallbackController = async (req: Request, res: Response, next
     const googleUserData = await gooogleOAuthHandleCallback(code as string);
     const user = await createOrUpdateUserDetails(googleUserData);
 
-    const tokens = generateTokenPair({
-      id: user.id,
-      name: user.name,
-    });
+    const tokens = generateTokenPair(user.id);
 
     res.cookie(config.ACCESS_TOKEN_NAME, tokens.accessToken, accessToken);
     res.cookie(config.REFRESH_TOKEN_NAME, tokens.refreshToken, refreshToken);

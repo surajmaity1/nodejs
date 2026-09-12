@@ -35,3 +35,31 @@ export const findUserByEmail = async (email: string) => {
     },
   });
 };
+
+export const findUserByUserId = async (userId: string) => {
+  return prisma.user.findUnique({
+    where: {
+      id: userId,
+      isDeleted: false,
+    },
+    select: {
+      id: true,
+    },
+  });
+};
+
+export const findUserDetailsByUserId = async (userId: string) => {
+  return prisma.user.findUnique({
+    where: {
+      id: userId,
+      isDeleted: false,
+    },
+    omit: {
+      email: true,
+      contactNumber: true,
+      signInProvider: true,
+      signInProviderId: true,
+      isDeleted: true,
+    },
+  });
+};

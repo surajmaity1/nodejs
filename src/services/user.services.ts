@@ -1,5 +1,11 @@
-import { createUser, findUserByEmail } from "@/repositories/user.repository";
+import {
+  createUser,
+  findUserByEmail,
+  findUserByUserId,
+  findUserDetailsByUserId,
+} from "@/repositories/user.repository";
 import { UserDetails } from "@/types/auth";
+import { Prisma } from "../../generated/prisma/client";
 
 export const createOrUpdateUserDetails = async (userData: UserDetails) => {
   try {
@@ -9,7 +15,7 @@ export const createOrUpdateUserDetails = async (userData: UserDetails) => {
       return existUser;
     }
 
-    const userDetails = {
+    const userDetails: Prisma.UserCreateInput = {
       signInProviderId: userData.id,
       name: userData.name,
       email: userData.email,
@@ -18,6 +24,17 @@ export const createOrUpdateUserDetails = async (userData: UserDetails) => {
     };
 
     return await createUser(userDetails);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserDetailsByUserId = async (userId: string, includeDetails: boolean) => {
+  try {
+    if (includeDetails) {
+      return await findUserDetailsByUserId(userId);
+    }
+    return await findUserByUserId(userId);
   } catch (error) {
     throw error;
   }
