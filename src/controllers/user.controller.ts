@@ -1,3 +1,9 @@
+import {
+  INVALID_USER_ID,
+  USER_DETAILS_FETCH_FAILED,
+  USER_FETCHED_SUCCESS,
+  USER_NOT_FOUND,
+} from "@/constants/auth";
 import { INTERNAL_SERVER_ERROR } from "@/constants/global";
 import { createUser, findUserByEmail, findUserByUserName } from "@/repositories/user.repository";
 import { getUserDetailsByUserId } from "@/services/user.services";
@@ -48,7 +54,7 @@ export const getUserDetailsByUserIdController = async (req: Request, res: Respon
 
     if (!validUserId) {
       return res.status(400).json({
-        message: "Invalid user id",
+        message: INVALID_USER_ID,
       });
     }
 
@@ -56,17 +62,17 @@ export const getUserDetailsByUserIdController = async (req: Request, res: Respon
 
     if (!userDetails) {
       return res.status(404).json({
-        message: "User not found",
+        message: USER_NOT_FOUND,
         data: null,
       });
     }
 
     return res.status(200).json({
-      message: "User fetched successfully",
+      message: USER_FETCHED_SUCCESS,
       data: userDetails,
     });
   } catch (error) {
-    logger.error("Error while fetching user details", error);
+    logger.error(USER_DETAILS_FETCH_FAILED, error);
     res.status(500).json({
       message: INTERNAL_SERVER_ERROR,
     });

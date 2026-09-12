@@ -1,9 +1,8 @@
 import z from "zod";
 
-export const validateUUID = (id: string) => {
+export const validateUUID = (id: string): boolean => {
   try {
-    const validation = z.uuid().safeParse(id);
-    return validation.success ? true : false;
+    return z.uuid().safeParse(id).success;
   } catch (error) {
     throw error;
   }

@@ -1,7 +1,7 @@
 import z from "zod";
 import dotenv from "dotenv";
 
-dotenv.config({override: true});
+dotenv.config();
 
 const environmentSchema = z.object({
   ENV: z.enum(["DEVELOPMENT", "TEST", "STAGING", "PRODUCTION"]),

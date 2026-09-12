@@ -1,4 +1,5 @@
 import { config } from "@/config/config";
+import { UNAUTHENTICATED_USER, USER_AUTH_ERROR } from "@/constants/auth";
 import { getUserDetailsByUserId } from "@/services/user.services";
 import { verifyToken } from "@/utils/jwt";
 import logger from "@/utils/logger";
@@ -13,13 +14,13 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
 
     if (!user) {
       return res.status(401).json({
-        message: "Unauthenticated user",
+        message: UNAUTHENTICATED_USER,
       });
     }
 
     next();
   } catch (error) {
-    logger.error("Error while authenticating user", error);
+    logger.error(USER_AUTH_ERROR, error);
     next(error);
   }
 };
