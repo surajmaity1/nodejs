@@ -48,5 +48,21 @@
     "tsup": "^8.5.1",
     "tsx": "^4.22.3",
     "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": "24.21.0",
+    "pnpm": "12.4.1"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.21.0",
+      "onFail": "download"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.4.1",
+      "onFail": "download"
+    }
   }
 }
