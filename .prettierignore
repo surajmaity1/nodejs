@@ -7,3 +7,4 @@ generated
 pnpm-workspace.yaml
 .github/workflows/test.yml
 jest.config.ts
+pnpm-lock.yaml
