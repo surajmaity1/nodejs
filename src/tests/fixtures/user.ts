@@ -1,24 +1,26 @@
-export const TEST_USERS = [
+import { SignInProvider } from "../../../generated/prisma/enums";
+
+type TestUserType = {
+  id?: string;
+  username: string | null;
+  email: string;
+  name: string;
+  image: string | null;
+  signInProvider: SignInProvider;
+  createdAt: Date;
+  updatedAt: Date;
+  isDeleted: boolean;
+};
+
+export const TEST_USERS: TestUserType[] = [
   {
     username: "arit",
     email: "arit@gmail.com",
-    contactNumber: 9876543210,
     name: "Arit",
-    signInProvider: "MANUAL",
+    signInProvider: "DEFAUTL",
     image: "arit.png",
-    id: "9876543210",
     createdAt: new Date(),
     updatedAt: new Date(),
     isDeleted: false,
-  },
-];
-
-export const TEST_USER_PAYLOADS = [
-  {
-    username: "arit",
-    email: "arit@gmail.com",
-    contactNumber: 9876543210,
-    name: "Arit",
-    signInProvider: "MANUAL",
   },
 ];

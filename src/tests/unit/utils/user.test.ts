@@ -1,5 +1,5 @@
+import { describe, expect, it } from "vitest";
 import { validateUUID } from "@/utils/user";
-import { describe, expect, it } from "@jest/globals";
 
 describe("validateUUID", () => {
   it("should not validate invalid UUID", () => {
