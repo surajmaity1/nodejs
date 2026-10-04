@@ -21,6 +21,9 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     next();
   } catch (error) {
     logger.error(USER_AUTH_ERROR, error);
-    next(error);
+
+    return res.status(401).json({
+      message: UNAUTHENTICATED_USER,
+    });
   }
 };
