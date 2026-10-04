@@ -1,24 +1,17 @@
-export const TEST_USERS = [
+import { User } from "../../../generated/prisma/client";
+
+export const TEST_USERS: User[] = [
   {
+    id: "74ab6f20-0ef2-4461-832f-8eea445103b9",
     username: "arit",
     email: "arit@gmail.com",
-    contactNumber: 9876543210,
+    contactNumber: 1234567890,
     name: "Arit",
-    signInProvider: "MANUAL",
+    signInProvider: "DEFAUTL",
+    signInProviderId: "74ab6f20-0ef2-4468-832f-8eea445103b4",
     image: "arit.png",
-    id: "9876543210",
     createdAt: new Date(),
     updatedAt: new Date(),
     isDeleted: false,
-  },
-];
-
-export const TEST_USER_PAYLOADS = [
-  {
-    username: "arit",
-    email: "arit@gmail.com",
-    contactNumber: 9876543210,
-    name: "Arit",
-    signInProvider: "MANUAL",
   },
 ];
